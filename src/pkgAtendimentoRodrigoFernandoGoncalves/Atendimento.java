@@ -36,7 +36,10 @@ public class Atendimento {
 				if (op < 1 || op > 13)
 					JOptionPane.showMessageDialog(null, "Opção Inválida!", "MENSAGEM", JOptionPane.CLOSED_OPTION);
 				if (op == 1) {
-					String numCartao = JOptionPane.showInputDialog(null, "Número do Cartão");
+					String numCartao = JOptionPane.showInputDialog(null, "NÚMERO DO CARTÃO");
+					String nome = JOptionPane.showInputDialog(null, "NOME");
+					String sobrenome = JOptionPane.showInputDialog(null, "SOBRENOME");
+					String valor = JOptionPane.showInputDialog(null, "VALOR");
 
 				}
 			} catch (Exception e) {
