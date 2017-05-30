@@ -42,6 +42,40 @@ public class Atendimento {
 					String valor = JOptionPane.showInputDialog(null, "VALOR");
 
 				}
+				if (op == 2) {
+
+				}
+				if (op == 3) {
+
+				}
+				if (op == 4) {
+
+				}
+				if (op == 5) {
+
+				}
+				if (op == 6) {
+
+				}
+				if (op == 7) {
+
+				}
+				if (op == 8) {
+
+				}
+				if (op == 9) {
+
+				}
+				if (op == 10) {
+
+				}
+				if (op == 11) {
+
+				}
+				if (op == 12) {
+
+				}
+
 			} catch (Exception e) {
 				JOptionPane.showMessageDialog(null, "Encerrando o programa...", "MENSAGEM", JOptionPane.CLOSED_OPTION);
 				break;
