@@ -28,9 +28,5 @@ public class Atendimento {
 
 	}
 	
-	
-	public int cartao{
-		
-	}
 
 }
