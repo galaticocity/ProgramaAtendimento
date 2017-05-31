@@ -88,6 +88,22 @@ public class Atendimento {
 			JOptionPane.showMessageDialog(null, "Nome não cadastrado", "MENSAGEM DO PROGRAMA", 0);
 	}
 
+	// metodo mostra todos os valores superiores a um valor passado como
+	// parametro
+	public static void mostraValorSuperior(double valor) {
+		aux = inicio;
+		JTextArea saida = new JTextArea(6, 35);
+		JScrollPane scroll = new JScrollPane(saida);
+		saida.append("CARTÃO\t NOME\t SOBRENOME\t VALOR ");
+		saida.append("\n-----------------------------------------------------------------------------\n");
+		while (aux != null) {
+			if (aux.valor > valor)
+				saida.append(aux.cartao + "\t " + aux.nome + "\t" + aux.sobreNome + "\t" + aux.valor + "\n");
+			aux = aux.prox;
+		}
+		JOptionPane.showMessageDialog(null, scroll, "ATENDIMENTOS COM VALORES SUPERIORES A:"+valor, JOptionPane.INFORMATION_MESSAGE);
+	}
+
 	public static void filaVazia() {
 		JOptionPane.showMessageDialog(null, "NÃO HÁ ATENDIMENTOS", "MENSAGEM DO PROGRAMA", 0);
 	}
@@ -188,6 +204,13 @@ public class Atendimento {
 
 				}
 				if (op == 10) {
+					String val = JOptionPane.showInputDialog("FILTRAR ATENDIMENTOS PARA VALORES SUPERIORES A:");
+					double valor = Double.parseDouble(val);
+					if (inicio == null)
+						filaVazia();
+					else {
+						mostraValorSuperior(valor);
+					}
 
 				}
 				if (op == 11) {
