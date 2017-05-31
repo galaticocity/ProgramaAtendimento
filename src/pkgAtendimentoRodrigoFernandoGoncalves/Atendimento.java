@@ -43,7 +43,7 @@ public class Atendimento {
 		return true;
 	}
 
-	// metodo que retorna dados do cliente ao receber o numero do cartão como
+	// metodo que mostra dados do cliente ao receber o numero do cartão como
 	// parametro
 	public static void localizaPorNumero(int cartao) {
 		aux = inicio;
@@ -64,6 +64,28 @@ public class Atendimento {
 		}
 		if (achou == 0)
 			JOptionPane.showMessageDialog(null, "Cartão não cadastrado", "MENSAGEM DO PROGRAMA", 0);
+	}
+
+	// metodo mostra dados do cliente ao receber o nome como parametro
+	public static void localizarPorNome(String nome) {
+		aux = inicio;
+		int achou = 0;
+		int contador = 1;
+		while (aux != null) {
+			if (aux.nome.equals(nome)) {
+				achou++;
+				JOptionPane.showMessageDialog(null,
+						"DADOS DO CLIENTE\n" + "\nCARTÃO: " + aux.cartao + "\n" + "NOME: " + aux.nome + "\n"
+								+ "SOBRENOME:" + aux.sobreNome + "\n" + "VALOR: " + aux.valor + "\n" + "POSIÇÃO: "
+								+ contador + "ª POSIÇÃO\n",
+						"MENSAGEM DO PROGRAMA", 0);
+
+			}
+			aux = aux.prox;
+			contador++;
+		}
+		if (achou == 0)
+			JOptionPane.showMessageDialog(null, "Nome não cadastrado", "MENSAGEM DO PROGRAMA", 0);
 	}
 
 	public static void filaVazia() {
@@ -153,7 +175,11 @@ public class Atendimento {
 
 				}
 				if (op == 7) {
-
+					String nome = JOptionPane.showInputDialog("Nome do cartão");
+					if (inicio == null)
+						filaVazia();
+					else
+						localizarPorNome(nome);
 				}
 				if (op == 8) {
 
