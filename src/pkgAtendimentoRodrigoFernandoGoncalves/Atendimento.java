@@ -207,7 +207,10 @@ public class Atendimento {
 						filaVazia();
 					else {
 						aux = inicio;
-						try (FileWriter arq = new FileWriter("/home/fernando/Atendimento.txt");
+						try (FileWriter arq = new FileWriter("/home/fernando/Atendimento.txt"); // mudar
+																								// para
+																								// diretorio
+																								// desejado
 								PrintWriter gravar = new PrintWriter(arq)) {
 
 							while (aux != null) {
@@ -215,7 +218,7 @@ public class Atendimento {
 								aux = aux.prox;
 							}
 							gravar.printf("---------------------------\n"
-									+ "corporygth (b) by: Fernando Gonçalves, Rodrigo Martins");
+									+ "corporygth (b) by: Fernando Gonçalves, Rodrigo Martins\n");
 
 						} catch (IOException e) {
 							e.printStackTrace();
@@ -227,7 +230,18 @@ public class Atendimento {
 					}
 				}
 				if (op == 9) {
-
+					int resp = JOptionPane.showConfirmDialog(null, "DESEJA VER O ARQUIVO?", "MENSAGEM",
+							JOptionPane.YES_NO_OPTION);
+					if (resp == JOptionPane.YES_NO_OPTION) {
+						try {
+							Runtime pro = Runtime.getRuntime();
+							pro.exec("gedit /home/fernando/Atendimento.txt");
+						} catch (Exception e) {
+							e.printStackTrace();
+							e.getMessage();
+							System.err.println("ERRO . . .");
+						}
+					}
 				}
 				if (op == 10) {
 					String val = JOptionPane.showInputDialog("FILTRAR ATENDIMENTOS PARA VALORES SUPERIORES A:");
