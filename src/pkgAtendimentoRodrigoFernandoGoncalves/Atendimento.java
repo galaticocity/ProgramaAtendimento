@@ -3,6 +3,8 @@ package pkgAtendimentoRodrigoFernandoGoncalves;
 import java.util.Scanner;
 
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 public class Atendimento {
 	Scanner enter = new Scanner(System.in);
@@ -24,6 +26,16 @@ public class Atendimento {
 				+ "11 - Ver endereços de hash\n" + "12 - Sobre\n " + "13 - Sair";
 	}
 
+	// metodo abaixo verifica se a lista contem numero do cartão cadastrado
+	public static boolean verificaNumCadastro(int cartao) {
+
+		return true;
+	}
+
+	public static void filaVazia() {
+		JOptionPane.showMessageDialog(null, "NÃO HÁ ATENDIMENTOS", "MENSAGEM DO PROGRAMA", 0);
+	}
+
 	public static void main(String[] args) {
 
 		Fila inicio = null;
@@ -36,13 +48,50 @@ public class Atendimento {
 				if (op < 1 || op > 13)
 					JOptionPane.showMessageDialog(null, "Opção Inválida!", "MENSAGEM", JOptionPane.CLOSED_OPTION);
 				if (op == 1) {
+					Fila novo = new Fila();
+
 					String numCartao = JOptionPane.showInputDialog(null, "NÚMERO DO CARTÃO");
 					String nome = JOptionPane.showInputDialog(null, "NOME");
 					String sobrenome = JOptionPane.showInputDialog(null, "SOBRENOME");
 					String valor = JOptionPane.showInputDialog(null, "VALOR");
 
+					// converte os valores recebidos como string
+					novo.cartao = Integer.parseInt(numCartao);
+					novo.nome = nome;
+					novo.sobreNome = sobrenome;
+					novo.valor = Double.parseDouble(valor);
+					novo.prox = null;
+
+					// caso a fila estiver vazia preenche no inicio
+					if (inicio == null) {
+						inicio = novo;
+						fim = novo;
+					} else if (!verificaNumCadastro(novo.cartao)) {
+						JOptionPane.showMessageDialog(null, "Esse número do cartão já foi usado.\n Favor verificar!");
+					} else {
+						fim.prox = novo;
+						fim = novo;
+					}
+					aux = fim;
+					fim = novo;
+
 				}
 				if (op == 2) {
+					if (inicio == null)
+						filaVazia();
+					else {
+						aux = inicio;
+						JTextArea saida = new JTextArea(6, 35);
+						JScrollPane scroll = new JScrollPane(saida);
+						saida.append("CARTÃO\t NOME\t SOBRENOME\t VALOR ");
+						saida.append("\n---------------------------------\n");
+						while (aux != null) {
+							saida.append(aux.cartao + "\t " + aux.nome + "\t" + aux.sobreNome + "\t" + aux.valor);
+							aux = aux.prox;
+						}
+						JOptionPane.showMessageDialog(null, scroll, "Consultar Fila", JOptionPane.INFORMATION_MESSAGE);
+
+					}
 
 				}
 				if (op == 3) {
