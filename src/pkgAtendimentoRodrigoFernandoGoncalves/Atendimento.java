@@ -165,6 +165,7 @@ public class Atendimento {
 					}else{
 						int numCartao = Integer.parseInt(JOptionPane.showInputDialog(null, "Informe o número do cartão a ser exibido o endereço hashcode: "));
 						aux = inicio;
+						
 						int cont = 0;
 						JTextArea saida = new JTextArea(6,25);
 						JScrollPane scroll = new JScrollPane(saida);
@@ -172,7 +173,7 @@ public class Atendimento {
 						while(aux != null){
 							if(numCartao == aux.cartao){
 								cont++;
-								saida.append("Ocorrência: "+cont+", Endereço: "+aux.hashCode()+"\n");
+								saida.append("Ocorrência: "+cont+", Endereço: "+aux.hashCode()+" + PROX: "+fim.hashCode()+" \n");
 							}else{
 								break;
 							}
