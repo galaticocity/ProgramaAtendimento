@@ -24,12 +24,19 @@ public class Atendimento {
 	}
 
 	public static String menu() {
-		return "MENU DE OPÇÕES\n" + "1 - Recepcionar Cliente\n" + "2 - Consultar clientes a serem atendidos\n"
-				+ "3 - Atender Clientes\n" + "4 - Liberar todos os clientes "
-				+ "5 - Verificar quantidade de clientes a atender\n" + "6 - Localizar cliente por número\n"
-				+ "7 - Localizar cliente por nome\n" + "8 - Emitir relatório de clientes "
-				+ "9 - Ver Relatórios de clientes\n" + "10 - Filtrar Clientes por valor\n"
-				+ "11 - Ver endereços de hash\n" + "12 - Sobre\n " + "13 - Sair";
+		return "MENU DE OPÇÕES\n" + "1 - Recepcionar Cliente\n" 
+				+ "2 - Consultar clientes a serem atendidos\n"
+				+ "3 - Atender Clientes\n" 
+				+ "4 - Liberar todos os clientes\n"
+				+ "5 - Verificar quantidade de clientes a atender\n" 
+				+ "6 - Localizar cliente por número\n"
+				+ "7 - Localizar cliente por nome\n" 
+				+ "8 - Emitir relatório de clientes "
+				+ "9 - Ver Relatórios de clientes\n" 
+				+ "10 - Filtrar Clientes por valor\n"
+				+ "11 - Ver endereços de hash\n" 
+				+ "12 - Sobre\n " 
+				+ "13 - Sair";
 	}
 
 	// metodo abaixo verifica se a lista contem numero do cartão cadastrado
@@ -110,10 +117,31 @@ public class Atendimento {
 					}
 
 				}
+				//Libera os clientes.
 				if (op == 4) {
-
+					if(inicio == null){
+						filaVazia();
+					}else{
+						inicio = null;
+						JOptionPane.showMessageDialog(null, "Os clientes foram liberados!",
+										"MENSAGEM", JOptionPane.CLOSED_OPTION);
+					}
 				}
+				//Verifica o número de clientes na fila.
 				if (op == 5) {
+					if(inicio==null){
+						filaVazia();
+					}
+					else{
+						int n = 0;
+						aux = inicio;
+						while (aux!=null){
+							aux = aux.prox;
+							n++;
+						} //Fecha o while
+						JOptionPane.showMessageDialog(null, "A fila possui: "+n+"cliente(s)",
+						"MENSAGEM", JOptionPane.CLOSED_OPTION);
+					}
 
 				}
 				if (op == 6) {
