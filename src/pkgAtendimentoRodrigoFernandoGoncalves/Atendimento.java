@@ -1,8 +1,13 @@
+/*
+ 	Programa Atendimento
+ 	Programadores: Fernando Gonçalves e Rodrigo Martins
+ 	Data: Maio 2017
+  
+ */
+
 package pkgAtendimentoRodrigoFernandoGoncalves;
 
-import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
+import javax.swing.*;
 
 public class Atendimento {
 	public static Fila inicio = null;
@@ -100,6 +105,9 @@ public class Atendimento {
 				if (op == 3) {
 					if (inicio == null)
 						filaVazia();
+					else {
+
+					}
 
 				}
 				if (op == 4) {
