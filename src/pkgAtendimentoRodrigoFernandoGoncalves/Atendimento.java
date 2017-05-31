@@ -50,6 +50,51 @@ public class Atendimento {
 		return true;
 	}
 
+	// metodo que mostra dados do cliente ao receber o numero do cartão como
+	// parametro
+	public static void localizaPorNumero(int cartao) {
+		aux = inicio;
+		int achou = 0;
+		int contador = 1;
+		while (aux != null) {
+			if (aux.cartao == cartao) {
+				achou++;
+				JOptionPane.showMessageDialog(null,
+						"DADOS DO CLIENTE\n" + "\nCARTÃO: " + aux.cartao + "\n" + "NOME: " + aux.nome + "\n"
+								+ "SOBRENOME:" + aux.sobreNome + "\n" + "VALOR: " + aux.valor + "\n" + "POSIÇÃO: "
+								+ contador + "ª POSIÇÃO\n",
+						"MENSAGEM DO PROGRAMA", 0);
+
+			}
+			aux = aux.prox;
+			contador++;
+		}
+		if (achou == 0)
+			JOptionPane.showMessageDialog(null, "Cartão não cadastrado", "MENSAGEM DO PROGRAMA", 0);
+	}
+
+	// metodo mostra dados do cliente ao receber o nome como parametro
+	public static void localizarPorNome(String nome) {
+		aux = inicio;
+		int achou = 0;
+		int contador = 1;
+		while (aux != null) {
+			if (aux.nome.equals(nome)) {
+				achou++;
+				JOptionPane.showMessageDialog(null,
+						"DADOS DO CLIENTE\n" + "\nCARTÃO: " + aux.cartao + "\n" + "NOME: " + aux.nome + "\n"
+								+ "SOBRENOME:" + aux.sobreNome + "\n" + "VALOR: " + aux.valor + "\n" + "POSIÇÃO: "
+								+ contador + "ª POSIÇÃO\n",
+						"MENSAGEM DO PROGRAMA", 0);
+
+			}
+			aux = aux.prox;
+			contador++;
+		}
+		if (achou == 0)
+			JOptionPane.showMessageDialog(null, "Nome não cadastrado", "MENSAGEM DO PROGRAMA", 0);
+	}
+
 	public static void filaVazia() {
 		JOptionPane.showMessageDialog(null, "NÃO HÁ ATENDIMENTOS", "MENSAGEM DO PROGRAMA", 0);
 	}
@@ -98,7 +143,8 @@ public class Atendimento {
 						JTextArea saida = new JTextArea(6, 35);
 						JScrollPane scroll = new JScrollPane(saida);
 						saida.append("CARTÃO\t NOME\t SOBRENOME\t VALOR ");
-						saida.append("\n---------------------------------\n");
+						saida.append(
+								"\n-----------------------------------------------------------------------------\n");
 						while (aux != null) {
 							saida.append(
 									aux.cartao + "\t " + aux.nome + "\t" + aux.sobreNome + "\t" + aux.valor + "\n");
@@ -113,7 +159,10 @@ public class Atendimento {
 					if (inicio == null)
 						filaVazia();
 					else {
-
+						JOptionPane.showMessageDialog(null,
+								"CARTÃO" + inicio.cartao + ", NOME: " + inicio.nome + " foi atendido (a)",
+								"MENSAGEM DO PROGRAMA", 0);
+						inicio = inicio.prox;
 					}
 
 				}
@@ -145,10 +194,20 @@ public class Atendimento {
 
 				}
 				if (op == 6) {
+					String num = JOptionPane.showInputDialog("Informe o número do cartão");
+					int cartao = Integer.parseInt(num);
+					if (inicio == null)
+						filaVazia();
+					else
+						localizaPorNumero(cartao);
 
 				}
 				if (op == 7) {
-
+					String nome = JOptionPane.showInputDialog("Nome do cartão");
+					if (inicio == null)
+						filaVazia();
+					else
+						localizarPorNome(nome);
 				}
 				if (op == 8) {
 
