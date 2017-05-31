@@ -31,7 +31,7 @@ public class Atendimento {
 				+ "5 - Verificar quantidade de clientes a atender\n" 
 				+ "6 - Localizar cliente por número\n"
 				+ "7 - Localizar cliente por nome\n" 
-				+ "8 - Emitir relatório de clientes "
+				+ "8 - Emitir relatório de clientes/n"
 				+ "9 - Ver Relatórios de clientes\n" 
 				+ "10 - Filtrar Clientes por valor\n"
 				+ "11 - Ver endereços de hash\n" 
@@ -160,6 +160,27 @@ public class Atendimento {
 
 				}
 				if (op == 11) {
+					if(inicio == null){
+						filaVazia();
+					}else{
+						int numCartao = Integer.parseInt(JOptionPane.showInputDialog(null, "Informe o número do cartão a ser exibido o endereço hashcode: "));
+						aux = inicio;
+						int cont = 0;
+						JTextArea saida = new JTextArea(6,25);
+						JScrollPane scroll = new JScrollPane(saida);
+						
+						while(aux != null){
+							if(numCartao == aux.cartao){
+								cont++;
+								saida.append("Ocorrência: "+cont+", Endereço: "+aux.hashCode()+"\n");
+							}else{
+								break;
+							}
+							aux = aux.prox;
+						}
+						JOptionPane.showMessageDialog(null, scroll, "Hashcode",
+													JOptionPane.INFORMATION_MESSAGE);
+					}
 
 				}
 				if (op == 12) {
