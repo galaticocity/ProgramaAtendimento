@@ -106,7 +106,10 @@ public class Atendimento {
 					if (inicio == null)
 						filaVazia();
 					else {
-
+						JOptionPane.showMessageDialog(null,
+								"CARTÃO" + inicio.cartao + ", NOME: " + inicio.nome + " foi atendido (a)",
+								"MENSAGEM DO PROGRAMA", 0);
+						inicio = inicio.prox;
 					}
 
 				}
