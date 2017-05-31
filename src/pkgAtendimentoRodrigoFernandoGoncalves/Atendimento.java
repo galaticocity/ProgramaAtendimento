@@ -1,13 +1,14 @@
 package pkgAtendimentoRodrigoFernandoGoncalves;
 
-import java.util.Scanner;
-
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 public class Atendimento {
-	Scanner enter = new Scanner(System.in);
+	public static Fila inicio = null;
+	public static Fila fim = null;
+	public static Fila aux;
+	public static int op = 0;
 
 	public static class Fila {
 		public int cartao;
@@ -28,7 +29,12 @@ public class Atendimento {
 
 	// metodo abaixo verifica se a lista contem numero do cartão cadastrado
 	public static boolean verificaNumCadastro(int cartao) {
-
+		aux = inicio;
+		while (aux != null) {
+			if (aux.cartao == cartao)
+				return false;
+			aux = aux.prox;
+		}
 		return true;
 	}
 
@@ -38,10 +44,6 @@ public class Atendimento {
 
 	public static void main(String[] args) {
 
-		Fila inicio = null;
-		Fila fim = null;
-		Fila aux;
-		int op = 0;
 		do {
 			try {
 				op = Integer.parseInt(JOptionPane.showInputDialog(menu(), "1"));
@@ -86,7 +88,8 @@ public class Atendimento {
 						saida.append("CARTÃO\t NOME\t SOBRENOME\t VALOR ");
 						saida.append("\n---------------------------------\n");
 						while (aux != null) {
-							saida.append(aux.cartao + "\t " + aux.nome + "\t" + aux.sobreNome + "\t" + aux.valor);
+							saida.append(
+									aux.cartao + "\t " + aux.nome + "\t" + aux.sobreNome + "\t" + aux.valor + "\n");
 							aux = aux.prox;
 						}
 						JOptionPane.showMessageDialog(null, scroll, "Consultar Fila", JOptionPane.INFORMATION_MESSAGE);
