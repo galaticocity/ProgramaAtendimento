@@ -98,6 +98,8 @@ public class Atendimento {
 
 				}
 				if (op == 3) {
+					if (inicio == null)
+						filaVazia();
 
 				}
 				if (op == 4) {
