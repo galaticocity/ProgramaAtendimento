@@ -7,6 +7,10 @@
 
 package pkgAtendimentoRodrigoFernandoGoncalves;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Scanner;
 import javax.swing.*;
 
 public class Atendimento {
@@ -31,8 +35,8 @@ public class Atendimento {
 				+ "5 - Verificar quantidade de clientes a atender\n" 
 				+ "6 - Localizar cliente por número\n"
 				+ "7 - Localizar cliente por nome\n" 
-				+ "8 - Emitir relatório de clientes/n"
-				+ "9 - Ver Relatórios de clientes\n" 
+       + "8 - Emitir relatório de clientes\n"
+			  + "9 - Ver Relatórios de clientes\n" 
 				+ "10 - Filtrar Clientes por valor\n"
 				+ "11 - Ver endereços de hash\n" 
 				+ "12 - Sobre\n " 
@@ -93,6 +97,23 @@ public class Atendimento {
 		}
 		if (achou == 0)
 			JOptionPane.showMessageDialog(null, "Nome não cadastrado", "MENSAGEM DO PROGRAMA", 0);
+	}
+
+	// metodo mostra todos os valores superiores a um valor passado como
+	// parametro
+	public static void mostraValorSuperior(double valor) {
+		aux = inicio;
+		JTextArea saida = new JTextArea(6, 35);
+		JScrollPane scroll = new JScrollPane(saida);
+		saida.append("CARTÃO\t NOME\t SOBRENOME\t VALOR ");
+		saida.append("\n-----------------------------------------------------------------------------\n");
+		while (aux != null) {
+			if (aux.valor > valor)
+				saida.append(aux.cartao + "\t " + aux.nome + "\t" + aux.sobreNome + "\t" + aux.valor + "\n");
+			aux = aux.prox;
+		}
+		JOptionPane.showMessageDialog(null, scroll, "ATENDIMENTOS COM VALORES SUPERIORES A:" + valor,
+				JOptionPane.INFORMATION_MESSAGE);
 	}
 
 	public static void filaVazia() {
@@ -210,12 +231,54 @@ public class Atendimento {
 						localizarPorNome(nome);
 				}
 				if (op == 8) {
+					if (inicio == null)
+						filaVazia();
+					else {
+						aux = inicio;
+						try (FileWriter arq = new FileWriter("/home/fernando/Atendimento.txt"); // mudar
+																								// para
+																								// diretorio
+																								// desejado
+								PrintWriter gravar = new PrintWriter(arq)) {
 
+							while (aux != null) {
+								gravar.printf("\n%d, %s, %s, %.2f \n", aux.cartao, aux.nome, aux.sobreNome, aux.valor);
+								aux = aux.prox;
+							}
+							gravar.printf("---------------------------\n"
+									+ "corporygth (b) by: Fernando Gonçalves, Rodrigo Martins\n");
+
+						} catch (IOException e) {
+							e.printStackTrace();
+							e.getMessage();
+							System.err.println("MENSSAGEM / CLASS ArquivoTexto \nErro ao tentar gravar no arquivo");
+						}
+						JOptionPane.showMessageDialog(null, "ARQUIVO GRAVADO COM SUCESSO", "MENSAGEM DO SISTEMA",
+								JOptionPane.CLOSED_OPTION);
+					}
 				}
 				if (op == 9) {
-
+					int resp = JOptionPane.showConfirmDialog(null, "DESEJA VER O ARQUIVO?", "MENSAGEM",
+							JOptionPane.YES_NO_OPTION);
+					if (resp == JOptionPane.YES_NO_OPTION) {
+						try {
+							Runtime pro = Runtime.getRuntime();
+							pro.exec("gedit /home/fernando/Atendimento.txt");
+						} catch (Exception e) {
+							e.printStackTrace();
+							e.getMessage();
+							System.err.println("ERRO . . .");
+						}
+					}
 				}
 				if (op == 10) {
+					String val = JOptionPane.showInputDialog("FILTRAR ATENDIMENTOS PARA VALORES SUPERIORES A:");
+					double valor = Double.parseDouble(val);
+					if (inicio == null)
+						filaVazia();
+					else {
+						mostraValorSuperior(valor);
+					}
 
 				}
 				if (op == 11) {
