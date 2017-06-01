@@ -1,7 +1,7 @@
 /*
  	Programa Atendimento
  	Programadores: Fernando Gonçalves e Rodrigo Martins
- 	Data: Maio 2017
+ 	Data: JUN 2017
   
  */
 
@@ -10,8 +10,8 @@ package pkgAtendimentoRodrigoFernandoGoncalves;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Scanner;
 import javax.swing.*;
+import java.util.Scanner;
 
 public class Atendimento {
 	public static Fila inicio = null;
@@ -28,19 +28,12 @@ public class Atendimento {
 	}
 
 	public static String menu() {
-		return "MENU DE OPÇÕES\n" + "1 - Recepcionar Cliente\n" 
-				+ "2 - Consultar clientes a serem atendidos\n"
-				+ "3 - Atender Clientes\n" 
-				+ "4 - Liberar todos os clientes\n"
-				+ "5 - Verificar quantidade de clientes a atender\n" 
-				+ "6 - Localizar cliente por número\n"
-				+ "7 - Localizar cliente por nome\n" 
-       + "8 - Emitir relatório de clientes\n"
-			  + "9 - Ver Relatórios de clientes\n" 
-				+ "10 - Filtrar Clientes por valor\n"
-				+ "11 - Ver endereços de hash\n" 
-				+ "12 - Sobre\n " 
-				+ "13 - Sair";
+		return "MENU DE OPÇÕES\n" + "1 - Recepcionar Cliente\n" + "2 - Consultar clientes a serem atendidos\n"
+				+ "3 - Atender Clientes\n" + "4 - Liberar todos os clientes\n"
+				+ "5 - Verificar quantidade de clientes a atender\n" + "6 - Localizar cliente por número\n"
+				+ "7 - Localizar cliente por nome\n" + "8 - Emitir relatório de clientes\n"
+				+ "9 - Ver Relatórios de clientes\n" + "10 - Filtrar Clientes por valor\n"
+				+ "11 - Ver endereços de hash\n" + "12 - Sobre\n " + "13 - Sair";
 	}
 
 	// metodo abaixo verifica se a lista contem numero do cartão cadastrado
@@ -64,17 +57,18 @@ public class Atendimento {
 			if (aux.cartao == cartao) {
 				achou++;
 				JOptionPane.showMessageDialog(null,
-						"DADOS DO CLIENTE\n" + "\nCARTÃO: " + aux.cartao + "\n" + "NOME: " + aux.nome + "\n"
+						"DADOS DO CLIENTE:\n" + "\nCARTÃO: " + aux.cartao + "\n" + "NOME: " + aux.nome + "\n"
 								+ "SOBRENOME:" + aux.sobreNome + "\n" + "VALOR: " + aux.valor + "\n" + "POSIÇÃO: "
-								+ contador + "ª POSIÇÃO\n",
-						"MENSAGEM DO PROGRAMA", 0);
+								+ contador + "a. POSIÇÃO\n",
+						"MENSAGEM DO PROGRAMA", JOptionPane.CLOSED_OPTION);
 
 			}
 			aux = aux.prox;
 			contador++;
 		}
 		if (achou == 0)
-			JOptionPane.showMessageDialog(null, "Cartão não cadastrado", "MENSAGEM DO PROGRAMA", 0);
+			JOptionPane.showMessageDialog(null, "Cartão não cadastrado", "MENSAGEM DO PROGRAMA",
+					JOptionPane.CLOSED_OPTION);
 	}
 
 	// metodo mostra dados do cliente ao receber o nome como parametro
@@ -86,17 +80,18 @@ public class Atendimento {
 			if (aux.nome.equals(nome)) {
 				achou++;
 				JOptionPane.showMessageDialog(null,
-						"DADOS DO CLIENTE\n" + "\nCARTÃO: " + aux.cartao + "\n" + "NOME: " + aux.nome + "\n"
+						"DADOS DO CLIENTE:\n" + "\nCARTÃO: " + aux.cartao + "\n" + "NOME: " + aux.nome + "\n"
 								+ "SOBRENOME:" + aux.sobreNome + "\n" + "VALOR: " + aux.valor + "\n" + "POSIÇÃO: "
-								+ contador + "ª POSIÇÃO\n",
-						"MENSAGEM DO PROGRAMA", 0);
+								+ contador + "a. POSIÇÃO\n",
+						"MENSAGEM DO PROGRAMA", JOptionPane.CLOSED_OPTION);
 
 			}
 			aux = aux.prox;
 			contador++;
 		}
 		if (achou == 0)
-			JOptionPane.showMessageDialog(null, "Nome não cadastrado", "MENSAGEM DO PROGRAMA", 0);
+			JOptionPane.showMessageDialog(null, "Nome não cadastrado", "MENSAGEM DO PROGRAMA",
+					JOptionPane.CLOSED_OPTION);
 	}
 
 	// metodo mostra todos os valores superiores a um valor passado como
@@ -113,11 +108,11 @@ public class Atendimento {
 			aux = aux.prox;
 		}
 		JOptionPane.showMessageDialog(null, scroll, "ATENDIMENTOS COM VALORES SUPERIORES A:" + valor,
-				JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.CLOSED_OPTION);
 	}
 
 	public static void filaVazia() {
-		JOptionPane.showMessageDialog(null, "NÃO HÁ ATENDIMENTOS", "MENSAGEM DO PROGRAMA", 0);
+		JOptionPane.showMessageDialog(null, "NÃO HÁ ATENDIMENTOS", "MENSAGEM DO PROGRAMA", JOptionPane.CLOSED_OPTION);
 	}
 
 	public static void main(String[] args) {
@@ -166,13 +161,13 @@ public class Atendimento {
 						saida.append("CARTÃO\t NOME\t SOBRENOME\t VALOR ");
 						saida.append(
 								"\n-----------------------------------------------------------------------------\n");
-						while 
-							(aux != null) {
+						while (aux != null) {
 							saida.append(
 									aux.cartao + "\t " + aux.nome + "\t" + aux.sobreNome + "\t" + aux.valor + "\n");
 							aux = aux.prox;
 						}
-						JOptionPane.showMessageDialog(null, scroll, "Consultar Fila", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(null, scroll, "CONSULTAR DADOS DO ATENDIMENTO",
+								JOptionPane.CLOSED_OPTION);
 
 					}
 
@@ -182,36 +177,39 @@ public class Atendimento {
 						filaVazia();
 					else {
 						JOptionPane.showMessageDialog(null,
-								"CARTÃO" + inicio.cartao + ", NOME: " + inicio.nome + " foi atendido (a)",
-								"MENSAGEM DO PROGRAMA", 0);
+								"CARTÃO: " + inicio.cartao + ", NOME: " + inicio.nome + " foi atendido(a)!",
+								"MENSAGEM DO PROGRAMA", JOptionPane.CLOSED_OPTION);
 						inicio = inicio.prox;
 					}
 
 				}
-				//Libera os clientes.
+				// Libera os clientes.
 				if (op == 4) {
-					if(inicio == null){
+					if (inicio == null) {
 						filaVazia();
-					}else{
+					} else {
 						inicio = null;
-						JOptionPane.showMessageDialog(null, "Os clientes foram liberados!",
-										"MENSAGEM", JOptionPane.CLOSED_OPTION);
+						JOptionPane.showMessageDialog(null, "**O ATENDIMENTO FOI LIBERADO**", "MENSAGEM",
+								JOptionPane.CLOSED_OPTION);
 					}
 				}
-				//Verifica o número de clientes na fila.
+				// Verifica o número de clientes na fila.
 				if (op == 5) {
-					if(inicio==null){
+					if (inicio == null) {
 						filaVazia();
-					}
-					else{
+					} else {
 						int n = 0;
 						aux = inicio;
-						while (aux!=null){
+						double soma = 0;
+						while (aux != null) {
+							soma += aux.valor;
 							aux = aux.prox;
 							n++;
-						} //Fecha o while
-						JOptionPane.showMessageDialog(null, "A fila possui: "+n+"cliente(s)",
-						"MENSAGEM", JOptionPane.CLOSED_OPTION);
+
+						} // Fecha o while
+						JOptionPane.showMessageDialog(null,
+								"O ATENDIMENTO CONTÉM: " + n + " ELEMENTOS.\nVALOR TOTAL:" + soma, "MENSAGEM",
+								JOptionPane.CLOSED_OPTION);
 					}
 
 				}
@@ -225,7 +223,7 @@ public class Atendimento {
 
 				}
 				if (op == 7) {
-					String nome = JOptionPane.showInputDialog("Nome do cartão");
+					String nome = JOptionPane.showInputDialog("Nome do cliente");
 					if (inicio == null)
 						filaVazia();
 					else
@@ -236,7 +234,7 @@ public class Atendimento {
 						filaVazia();
 					else {
 						aux = inicio;
-						try (FileWriter arq = new FileWriter("/home/fernando/Atendimento.txt"); // mudar
+						try (FileWriter arq = new FileWriter("/home/galatico/Atendimento.txt"); // mudar
 																								// para
 																								// diretorio
 																								// desejado
@@ -264,7 +262,7 @@ public class Atendimento {
 					if (resp == JOptionPane.YES_NO_OPTION) {
 						try {
 							Runtime pro = Runtime.getRuntime();
-							pro.exec("gedit /home/fernando/Atendimento.txt");
+							pro.exec("gedit /home/galatico/Atendimento.txt");
 						} catch (Exception e) {
 							e.printStackTrace();
 							e.getMessage();
@@ -282,59 +280,65 @@ public class Atendimento {
 					}
 
 				}
+				// Mostra o hashcode
 				if (op == 11) {
-					if(inicio == null){
+					if (inicio == null) {
 						filaVazia();
-					}else{
-						int numCartao = Integer.parseInt(JOptionPane.showInputDialog(null, "Informe o número do cartão a ser exibido o endereço hashcode: "));
+					} else {
+						int numCartao = Integer.parseInt(JOptionPane.showInputDialog(null,
+								"FILTRAR HASHCODES COM VALORES SUPERIORES A: "));
 						aux = inicio;
-						
+
 						int cont = 0;
-						
-						while(aux != null){
-							if(numCartao == aux.cartao){
-								cont++;					
+
+						while (aux != null) {
+							if (numCartao == aux.cartao) {
+
+								cont++;
 								aux = inicio;
 								JTextArea saidas = new JTextArea(6, 35);
 								JScrollPane scrolls = new JScrollPane(saidas);
 								saidas.append("NOME\t ENDEREÇO\t PROX");
 								saidas.append(
 										"\n-----------------------------------------------------------------------------\n");
-								while 
-									(aux != null) {
-									saidas.append(
-											aux.nome + "\t " + aux.hashCode() + "\t" + fim.hashCode() +"\n");
+								while (aux != null) {
+									if (aux.prox == fim)
+										saidas.append(aux.nome + "\t " + aux.hashCode() + "\t" + fim.hashCode() + "\n");
+									else
+										saidas.append(aux.nome + "\t " + aux.hashCode() + "\t" + fim.hashCode() + "\n");
 									aux = aux.prox;
-								}
-								JOptionPane.showMessageDialog(null, scrolls, "CONSULTAR DADOS DO ATENDIMENTO", JOptionPane.INFORMATION_MESSAGE);
 
-								
-								
-								
-								
-							}else{
+								}
+								JOptionPane.showMessageDialog(null, scrolls, "CONSULTAR DADOS DO ATENDIMENTO",
+										JOptionPane.INFORMATION_MESSAGE);
+
+							} else {
 								break;
 							}
 							aux = aux.prox;
 						}
-						
+
 					}
 
 				}
+				// Sobre o programa
 				if (op == 12) {
 
-					JOptionPane.showMessageDialog(null, "PROGRAMA DE ATENDIMENTO AO CLIENTE\n-------------------------------------------------------------------------------\nCopyright(c) Galatico Corp Ltda\nProgramadores: Rodrigo Martins, Fernando Gonçalves\nVersão 1.0\nData: Maio 2017" );
-					
+					JOptionPane.showMessageDialog(null,
+							"PROGRAMA DE ATENDIMENTO AO CLIENTE\n-------------------------------------------------------------------------------\nCopyright(c) Galatico Corp Ltda\nProgramadores: Rodrigo Martins, Fernando Gonçalves\nVersão 1.0\nData: Junho 2017",
+							"SOBRE O PROGRAMA", JOptionPane.CLOSED_OPTION);
+
 				}
-				
 
 			} catch (Exception e) {
 				JOptionPane.showMessageDialog(null, "Encerrando o programa...", "MENSAGEM", JOptionPane.CLOSED_OPTION);
+				System.out.println("Erro");
+				e.printStackTrace();
+				e.getMessage();
 				break;
 			}
 		} while (op != 13);
-		JOptionPane.showMessageDialog(null, "* \t PROGRAMA FINALIZADO!\t *", "MENSAGEM",
-				JOptionPane.CLOSED_OPTION);
+		JOptionPane.showMessageDialog(null, "* \t PROGRAMA FINALIZADO!\t *", "MENSAGEM", JOptionPane.CLOSED_OPTION);
 
 	}
 
