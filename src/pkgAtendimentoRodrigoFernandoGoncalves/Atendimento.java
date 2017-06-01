@@ -166,7 +166,8 @@ public class Atendimento {
 						saida.append("CARTÃO\t NOME\t SOBRENOME\t VALOR ");
 						saida.append(
 								"\n-----------------------------------------------------------------------------\n");
-						while (aux != null) {
+						while 
+							(aux != null) {
 							saida.append(
 									aux.cartao + "\t " + aux.nome + "\t" + aux.sobreNome + "\t" + aux.valor + "\n");
 							aux = aux.prox;
@@ -289,33 +290,50 @@ public class Atendimento {
 						aux = inicio;
 						
 						int cont = 0;
-						JTextArea saida = new JTextArea(6,25);
-						JScrollPane scroll = new JScrollPane(saida);
 						
 						while(aux != null){
 							if(numCartao == aux.cartao){
-								cont++;
-								saida.append("Ocorrência: "+cont+", Endereço: "+aux.hashCode()+" + PROX: "+fim.hashCode()+" \n");
+								cont++;					
+								aux = inicio;
+								JTextArea saidas = new JTextArea(6, 35);
+								JScrollPane scrolls = new JScrollPane(saidas);
+								saidas.append("NOME\t ENDEREÇO\t PROX");
+								saidas.append(
+										"\n-----------------------------------------------------------------------------\n");
+								while 
+									(aux != null) {
+									saidas.append(
+											aux.nome + "\t " + aux.hashCode() + "\t" + fim.hashCode() +"\n");
+									aux = aux.prox;
+								}
+								JOptionPane.showMessageDialog(null, scrolls, "CONSULTAR DADOS DO ATENDIMENTO", JOptionPane.INFORMATION_MESSAGE);
+
+								
+								
+								
+								
 							}else{
 								break;
 							}
 							aux = aux.prox;
 						}
-						JOptionPane.showMessageDialog(null, scroll, "Hashcode",
-													JOptionPane.INFORMATION_MESSAGE);
+						
 					}
 
 				}
 				if (op == 12) {
 
+					JOptionPane.showMessageDialog(null, "PROGRAMA DE ATENDIMENTO AO CLIENTE\n-------------------------------------------------------------------------------\nCopyright(c) Galatico Corp Ltda\nProgramadores: Rodrigo Martins, Fernando Gonçalves\nVersão 1.0\nData: Maio 2017" );
+					
 				}
+				
 
 			} catch (Exception e) {
 				JOptionPane.showMessageDialog(null, "Encerrando o programa...", "MENSAGEM", JOptionPane.CLOSED_OPTION);
 				break;
 			}
 		} while (op != 13);
-		JOptionPane.showMessageDialog(null, "=======\t PROGRAMA ENCERRADO!\t ======", "MENSAGEM",
+		JOptionPane.showMessageDialog(null, "* \t PROGRAMA FINALIZADO!\t *", "MENSAGEM",
 				JOptionPane.CLOSED_OPTION);
 
 	}
